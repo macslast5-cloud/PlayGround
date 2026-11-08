@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090b0d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23090b0d'/%3E%3Cpath d='m32 5 6.7 18.3L57 16l-7.3 18L64 45l-20-1.6L32 62l-7-18.6L5 49l8-18L0 19l21 1z' fill='%23d3a657'/%3E%3C/svg%3E" />
+  <title>Midnight at Starlight — Night Watch</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell" id="game">
+    <div class="grain" aria-hidden="true"></div>
+    <header class="hud">
+      <div class="brand"><span class="brand-mark">✦</span><span>STARLIGHT<br><small>FAMILY DINER</small></span></div>
+      <div class="shift-label">NIGHT WATCH <span>•</span> NIGHT 01</div>
+      <div class="status">
+        <div class="power-wrap"><span class="power-label">POWER</span><strong id="power">100</strong><span class="percent">%</span><div class="power-track"><i id="powerBar"></i></div></div>
+        <div class="time"><span id="clock">12</span><small>AM</small></div>
+      </div>
+    </header>
+
+    <section class="office" id="office" aria-label="Security office">
+      <div class="back-wall">
+        <div class="wall-stain stain-one"></div><div class="wall-stain stain-two"></div>
+        <div class="poster poster-left"><span>MAKE SOME<br>NOISE!</span><b>♪</b></div>
+        <div class="poster poster-right"><span>HAVE A<br>SUPER STAR<br>DAY!</span><b>★</b></div>
+        <div class="clock-face"><i></i></div>
+        <div class="wall-line"></div>
+        <div class="dark-hall left-hall"><div class="hall-glow"></div><div class="hall-frame"></div></div>
+        <div class="dark-hall right-hall"><div class="hall-glow"></div><div class="hall-frame"></div></div>
+        <div class="door-shutter left-shutter" id="leftShutter"><div class="shutter-ribs"></div><span>SECURE</span></div>
+        <div class="door-shutter right-shutter" id="rightShutter"><div class="shutter-ribs"></div><span>SECURE</span></div>
+        <div class="desk">
+          <div class="desk-back"></div><div class="desk-top"></div><div class="desk-front"></div>
+          <div class="fan"><div class="fan-cage"><i></i><i></i><i></i><i></i><b></b></div><div class="fan-neck"></div><div class="fan-base"></div></div>
+          <div class="papers"><i></i><i></i><i></i></div><div class="mug">☕</div>
+          <div class="desk-shadow"></div>
+        </div>
+        <div class="threat-figure" id="threatFigure" aria-hidden="true"><div class="figure-ears"><i></i><i></i></div><div class="figure-head"><i class="eye eye-a"></i><i class="eye eye-b"></i><b></b></div><div class="figure-body"></div></div>
+        <div class="light-wash" id="lightWash"></div>
+      </div>
+      <div class="office-vignette"></div>
+      <div class="scanlines"></div>
+      <div class="camera-hint" id="cameraHint">CAM 01 <span>•</span> STAGE</div>
+      <div class="warning-banner" id="warningBanner">MOTION DETECTED</div>
+    </section>
+
+    <nav class="side-controls left-controls" aria-label="Left door controls">
+      <div class="control-label">WEST HALL</div>
+      <button class="control-button light-button" id="leftLight" aria-label="Toggle west hall light"><span class="bulb">◉</span><b>LIGHT</b><small>A</small></button>
+      <button class="control-button door-button" id="leftDoor" aria-label="Toggle west security door"><span class="door-icon">▥</span><b>DOOR</b><small>Q</small></button>
+      <div class="control-state" id="leftState">OPEN</div>
+    </nav>
+    <nav class="side-controls right-controls" aria-label="Right door controls">
+      <div class="control-label">EAST HALL</div>
+      <button class="control-button light-button" id="rightLight" aria-label="Toggle east hall light"><span class="bulb">◉</span><b>LIGHT</b><small>D</small></button>
+      <button class="control-button door-button" id="rightDoor" aria-label="Toggle east security door"><span class="door-icon">▥</span><b>DOOR</b><small>E</small></button>
+      <div class="control-state" id="rightState">OPEN</div>
+    </nav>
+
+    <button class="monitor-toggle" id="monitorToggle" aria-label="Open security cameras"><span>▰</span><b>CAMERAS</b><small>SPACE</small><i class="toggle-notch"></i></button>
+    <section class="monitor" id="monitor" aria-label="Security camera monitor">
+      <div class="monitor-top"><div><span class="rec-dot"></span> LIVE FEED <small>STL-CCTV / 1987</small></div><button id="closeMonitor" aria-label="Close cameras">×</button></div>
+      <div class="feed" id="feed"><div class="feed-noise"></div><div class="feed-room" id="feedRoom"><div class="feed-label" id="feedLabel">SHOW STAGE</div><div class="feed-art"><div class="feed-curtain"></div><div class="feed-spot"></div><div class="feed-character" id="feedCharacter"><i></i><i></i><b></b></div><div class="feed-platform"></div></div><div class="feed-timestamp" id="feedTimestamp">CAM 01 • 12:00 AM</div></div><div class="signal-lost" id="signalLost">SIGNAL LOST</div></div>
+      <div class="cam-controls"><div class="camera-map"><div class="map-title">CAMERA MAP <span>▱</span></div><button class="cam-node stage-node active" data-cam="stage">01<span>STAGE</span></button><button class="cam-node dining-node" data-cam="dining">02<span>DINING</span></button><button class="cam-node west-node" data-cam="west">03<span>WEST HALL</span></button><button class="cam-node east-node" data-cam="east">04<span>EAST HALL</span></button><button class="cam-node storage-node" data-cam="storage">05<span>STORAGE</span></button><div class="map-path path-one"></div><div class="map-path path-two"></div><div class="map-path path-three"></div></div><div class="monitor-note"><b>TIP //</b> Watch the halls. Shut a door only when something is close — closed doors drain power fast.</div></div>
+      <div class="monitor-footer"><span>ST★RLIGHT SECURITY SYSTEM</span><span>BATTERY BACKUP <b id="backup">100%</b></span></div>
+    </section>
+
+    <div class="toast" id="toast" aria-live="polite"></div>
+    <div class="overlay intro-overlay" id="intro">
+      <div class="intro-card"><div class="intro-kicker">STARLIGHT FAMILY DINER <span>•</span> EST. 1987</div><div class="title-lockup"><span class="title-star">✦</span><h1>MIDNIGHT<br><em>AT STARLIGHT</em></h1></div><p class="intro-sub">THE BUILDING ISN’T EMPTY AFTER CLOSE.</p><div class="intro-divider"></div><p class="intro-copy">Your first night on the job. Keep an eye on the cameras, watch both halls, and make it to 6 AM. The doors work. The power won’t last forever.</p><button class="start-button" id="startButton">BEGIN NIGHT <span>→</span></button><div class="intro-controls"><span><b>Q / E</b> DOORS</span><span><b>A / D</b> LIGHTS</span><span><b>SPACE</b> CAMERAS</span></div><div class="intro-foot">HEADPHONES RECOMMENDED <span>—</span> GOOD LUCK, GUARD.</div></div>
+    </div>
+    <div class="overlay end-overlay hidden" id="endOverlay"><div class="end-card"><div class="end-symbol" id="endSymbol">✦</div><p class="end-kicker" id="endKicker">SHIFT COMPLETE</p><h2 id="endTitle">6:00 AM</h2><p id="endText">You made it through the night.</p><button class="start-button" id="restartButton">PLAY AGAIN <span>↻</span></button></div></div>
+    <div class="mobile-tip">TAP THE DOOR / LIGHT CONTROLS TO USE THEM</div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
